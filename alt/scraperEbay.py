@@ -11,7 +11,7 @@ import random
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 # Gehe zur Verkäuferseite
-seller_url = "https://www.ebay.de/str/perlesmith"
+seller_url = "https://www.ebay.de/str/glasvary?_sop=15&_pgn=2&_trksid=p4429486.m3561.l161211"
 driver.get(seller_url)
 
 # Warte, bis die Artikel geladen sind
@@ -32,7 +32,7 @@ for article in articles:
         driver.execute_script("window.open(arguments[0]);", link)
         
         # Warte kurz und überprüfe, ob ein neues Fenster geöffnet wurde
-        time.sleep(random.uniform(1, 2))  # Leichte Wartezeit
+        time.sleep(random.uniform(0, 2))  # Leichte Wartezeit
         driver.switch_to.window(driver.window_handles[-1])
         #new_window_opened = WebDriverWait(driver, 15).until(EC.new_window_is_opened(driver.window_handles))
         #if new_window_opened:
@@ -42,7 +42,7 @@ for article in articles:
         #    continue
         
         # Warte, bis das spezifische div geladen ist
-        right_summary_panel = WebDriverWait(driver, 10).until(
+        right_summary_panel = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.ID, "RightSummaryPanel"))
         )
         
